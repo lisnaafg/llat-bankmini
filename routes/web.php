@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TransaksiController;
+use App\Http\Controllers\LaporanController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,4 +21,14 @@ Route::post('/users', [UserController::class, 'simpanUser'])->name('users.store'
 Route::get('/users/{id}/hapus', [UserController::class, 'hapusUser'])->name('users.delete');
 Route::get('/users/{id}/edit', [UserController::class, 'editUser'])->name('users.edit');
 
-Route::post('/users/{id}/update', [UserController::class, 'updateUser'])->name('users.update');
+Route::put('/users/{id}/update', [UserController::class, 'updateUser'])->name('users.update');
+
+
+// transaksi
+Route::get('/transaksi', [TransaksiController::class, 'index'])->name('transaksi.index');
+Route::get('/transaksi/create', [TransaksiController::class, 'tambahTrans'])->name('transaksi.create');  // Show form to create transaksi
+Route::post('/transaksi/cari', [TransaksiController::class, 'cariNasabah'])->name('transaksi.cari');  // Route to search for nasabah
+Route::post('/transaksi', [TransaksiController::class, 'simpanTrans'])->name('transaksi.store');  // Store transaksi
+Route::get('/transaksi/{id}/hapus', [TransaksiController::class,'hapusTrans'])->name('transaksi.delete');
+Route::get('/transaksi/{id}/edit', [TransaksiController::class,'editTrans'])->name('transaksi.edit');
+Route::get('/nasabah', [LaporanController::class, 'halamanNasabah'])->name('nasabah.index');

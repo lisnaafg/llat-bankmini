@@ -7,45 +7,45 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
-                
+
                 <div class="card-body">
                     @if (Auth::user()->peran == 'admin')
                         <a href="{{ route('home') }}" class="btn btn-warning">kembali</a>
                         <a href="{{ route('users.create') }}" class="btn btn-primary">Edit User</a>
-                            <form action="{{route('users.update', $edit->id
-)}}" method="POST">
+                        <form action="{{route('users.update', $edit->id)}}" method="POST">
 
                         @csrf
+                        @method('PUT')
                         <div class="form-group">
-                            <label for="nik">NIK</label>
-                            <input type="text" name="nik" class="form-control" value="{{ $edit->'nik' }}" required>
+                            <label for="nik">nik</label>
+                            <input type="text" name="nik" class="form-control" value="{{ $edit->nik }}" required>
                             @error('nik')
                                 <span class="text-danger">{{ $message }}</span>
-                                
-                            @enderror 
+
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="name">Nama</label>
-                            <input type="text" name="name" class="form-control" value="{{ $edit->'name' }}" required> 
+                            <input type="text" name="name" class="form-control" value="{{ $edit->name }}" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="text" name="email" class="form-control" value="{{ $edit->'email' }}" required> 
+                            <input type="text" name="email" class="form-control" value="{{ $edit->email }}" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" name="password" class="form-control" value="{{ $edit->'password' }}"  required> 
+                            <input type="password" name="password" class="form-control" value="{{ $edit->password }}"  required>
                         </div>
                         <div class="form-group">
                             <label for="hp">HP</label>
-                            <input type="text" name="hp" class="form-control" value="{{ $edit->'hp' }}" required> 
+                            <input type="text" name="hp" class="form-control" value="{{ $edit->hp }}" required>
                         </div>
                         <div class="form-group">
                             <label for="peran">Peran</label>
-                                <select name="peran" class="form-control" value="{{ $edit->'peran' }}" required>
+                                <select name="peran" class="form-control" value="{{ $edit->peran }}" required>
                                     <option @if ($edit->peran == 'admin') selected @endif value="admin">Admin</option>
                                     <option @if ($edit->peran == 'teller') selected @endif value="teller">Teller</option>
-                                    <option @if ($edit->peran == 'nasabah') selected @endif value="nasabah">Nasabah</option> 
+                                    <option @if ($edit->peran == 'nasabah') selected @endif value="nasabah">Nasabah</option>
                                 </select>
                         </div>
                         <button type="submit" class="btn btn-primary mt-3">Simpan</button>

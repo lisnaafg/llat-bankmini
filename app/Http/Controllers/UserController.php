@@ -23,21 +23,21 @@ class UserController extends Controller
     $this->validate($request,[
             'nik' => 'required|numeric|unique:users,nik',
             'name' => 'required',
-            'email' => 'required|email|unique:users,email', 
+            'email' => 'required|email|unique:users,email',
             'password' => 'required',
-            'hp' => 'required|numeric|unique:users,hp', 
+            'hp' => 'required|numeric|unique:users,hp',
             'peran' => 'required',
 
         ], [
-            'nik.required' => 'NIK harus diisi', 
-            'nik.numeric' => 'NIK harus berupa angka', 
-            'nik.unique' => 'NIK sudah terdaftar', 
-            'name.required' => 'Nama harus diisi', 
-            'email.required' => 'Email harus diisi', 
-            'email.email' => 'Email tidak valid', 
-            'email.unique' => 'Email sudah terdaftar', 
-            'password.required' => 'Password harus diisi', 
-            'hp.required' => 'Nomor HP harus diisi', 
+            'nik.required' => 'NIK harus diisi',
+            'nik.numeric' => 'NIK harus berupa angka',
+            'nik.unique' => 'NIK sudah terdaftar',
+            'name.required' => 'Nama harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Email tidak valid',
+            'email.unique' => 'Email sudah terdaftar',
+            'password.required' => 'Password harus diisi',
+            'hp.required' => 'Nomor HP harus diisi',
             'hp.numeric' => 'Nomor HP harus berupa angka',
             'hp.unique' => 'Nomor HP sudah terdaftar',
             'peran' => 'Peran harus diisi'
@@ -52,8 +52,8 @@ class UserController extends Controller
         $simpan->peran = $request->peran;
         $simpan->save();
 
-        return redirect()->route('users.index');
-    
+        return redirect()->route('user.index');
+
     }
 
     public function hapusUser($id)
@@ -63,36 +63,41 @@ class UserController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function editUser($id){
+    public function editUser($id)
+    {
         $edit = User::find($id);
-        return view('users.edit', compact('edit'));
+        return view('user.edit', compact('edit'));
     }
 
+
     public function updateUser(Request $request, $id)
-    {
+{
+    // Validasi data
+    $request->validate([
+        'nik' => 'required|unique:users,nik,' . $id,
+        'name' => 'required',
+        'email' => 'required|email',
+        'password' => 'nullable|min:6',  // Jika password diubah
+        'hp' => 'required',
+        'peran' => 'required',
+    ]);
 
-        $this->validate($request,[
-            'nik' => 'required|numeric|unique:users,nik'. $id,
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email'. $id, 
-            'password' => 'required',
-            'hp' => 'required|numeric|unique:users,hp' . $id, 
-            'peran' => 'required',
+    // Cari user berdasarkan ID
+    $user = User::findOrFail($id);
 
-        ], [
-            'nik.required' => 'NIK harus diisi', 
-            'nik.numeric' => 'NIK harus berupa angka', 
-            'nik.unique' => 'NIK sudah terdaftar', 
-            'name.required' => 'Nama harus diisi', 
-            'email.required' => 'Email harus diisi', 
-            'email.email' => 'Email tidak valid', 
-            'email.unique' => 'Email sudah terdaftar', 
-            'password.required' => 'Password harus diisi', 
-            'hp.required' => 'Nomor HP harus diisi', 
-            'hp.numeric' => 'Nomor HP harus berupa angka',
-            'hp.unique' => 'Nomor HP sudah terdaftar',
-            'peran' => 'Peran harus diisi'
-        ]);
+    // Update data user
+    $user->update([
+        'nik' => $request->nik,
+        'name' => $request->name,
+        'email' => $request->email,
+        'password' => $request->password ? bcrypt($request->password) : $user->password,  // Jaga agar password tidak berubah kecuali diinput
+        'hp' => $request->hp,
+        'peran' => $request->peran,
+    ]);
+
+    // Redirect ke halaman tertentu setelah berhasil
+    return redirect()->route('users.index')->with('success', 'User updated successfully');
+
 
         $simpan = User::find($id);
         $simpan->nik = $request->nik;
@@ -104,10 +109,6 @@ class UserController extends Controller
         $simpan->hp = $request->hp;
         $simpan->peran = $request->peran;
         $simpan->save();
-        return redirect()->route('users.edit');
-
-
-
+        return redirect()->route('user.edit');
     }
-
 }
