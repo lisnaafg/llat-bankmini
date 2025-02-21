@@ -29,12 +29,6 @@
                             </div>
                             <button type="submit"  class="btn btn-primary">Simpan</button>
                         </form>
-
-                    @else
-                        <div class="alert alert-danger">
-                            Nasabah tidak ditemukan, pastikan NIk benar dan coba ulang
-                        </div>
-
                     @endif
                 </div>
             </div>

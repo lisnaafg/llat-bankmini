@@ -9,6 +9,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/laporan', [LaporanController::class, 'halamanNasabah'])->middleware('auth');
+
 Auth::routes(["register" => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -31,4 +33,14 @@ Route::post('/transaksi/cari', [TransaksiController::class, 'cariNasabah'])->nam
 Route::post('/transaksi', [TransaksiController::class, 'simpanTrans'])->name('transaksi.store');  // Store transaksi
 Route::get('/transaksi/{id}/hapus', [TransaksiController::class,'hapusTrans'])->name('transaksi.delete');
 Route::get('/transaksi/{id}/edit', [TransaksiController::class,'editTrans'])->name('transaksi.edit');
+
+
+// Nasabah
 Route::get('/nasabah', [LaporanController::class, 'halamanNasabah'])->name('nasabah.index');
+Route::get('/nasabah/laporan', [LaporanController::class,'laporanNasabah'])->name('nasabah.laporan');
+Route::get('/nasabah/laporan/cetak', [LaporanController::class,'cetakLaporan'])->name('nasabah.cetak');
+Route::get('/admin/laporan', [LaporanController::class,'laporanTransaksiAdmin'])->name('admin.laporan');
+Route::get('/admin/laporan/cetak', [LaporanController::class,'cetakLaporanAdmin'])->name('admin.cetak');
+
+
+Route::get('/admin/laporan/{id}/cetak', [LaporanController::class,'cetakLaporanPilih'])->name('admin.laporan.cetak.pilih');

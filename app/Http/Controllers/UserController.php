@@ -96,7 +96,7 @@ class UserController extends Controller
     ]);
 
     // Redirect ke halaman tertentu setelah berhasil
-    return redirect()->route('users.index')->with('success', 'User updated successfully');
+    return redirect()->route('user.index')->with('success', 'User updated successfully');
 
 
         $simpan = User::find($id);
@@ -109,6 +109,6 @@ class UserController extends Controller
         $simpan->hp = $request->hp;
         $simpan->peran = $request->peran;
         $simpan->save();
-        return redirect()->route('user.edit');
+        return redirect()->route('users.edit');
     }
 }

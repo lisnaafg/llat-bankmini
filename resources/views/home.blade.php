@@ -20,7 +20,7 @@
 
                     @elseif (Auth::user()->peran == 'nasabah')
                     <a href="{{ route('nasabah.index')}}" class="btn btn-primary">Nasabah</a>
-                        <h1>Selamat Datang Teller</h1>
+                        <h1>Selamat Datang Nasabah</h1>
                     @endif
                 </div>
             </div>

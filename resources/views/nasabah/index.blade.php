@@ -9,45 +9,45 @@
 
 
                 <div class="card-body">
-                    @if (Auth::user()->peran == 'admin')
+                    @if (Auth::user()->peran == 'nasabah')
                         <a href="{{ route('home') }}" class="btn btn-warning">kembali</a>
-                        <a href="" class="btn btn-primary">Cetak laporan Nasabah</a>
+                        <a href="{{ route('admin.laporan.cetak.pilih', $u->id) }}" class="btn btn-primary">Cetak Laporan Nasabah</a>
                         <br>
                         <br>
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>NIK</th>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>Hp</th>
-                                    <th>Peran</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($users as $u)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $u->nik }}</td>
-                                        <td>{{ $u->name }}</td>
-                                        <td>{{ $u->email }}</td>
-                                        <td>{{ $u->hp }}</td>
-                                        <td>{{ $u->peran }}</td>
-                                        <td>
-                                            <a href="{{ route('users.edit', $u->id)}}" class="btn btn-warning">Edit</a>
-                                            <a href="{{ route('users.delete',$u->id )}}" class="btn btn-danger">Hapus</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-
-                    </br></br>
-                    @else
-                        <h1> Anda tidak memiliki akses ke halaman ini</h1>
                     @endif
+                        <h1> Detail Nasabah </h1>
+                        <table>
+                            <tr>
+                                <th>Nik</th>
+                                <td>{{Auth::user()->nik}}</td>
+                            </tr>
+                            <tr>
+                                <th>Nama</th>
+                                <td>{{Auth::user()->name}}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>{{Auth::user()->email}}</td>
+                            </tr>
+                            <tr>
+                                <th>Saldo</th>
+                                <td>{{Auth::user()->transaksi->sum('tabungan') }}</td>
+                            </tr>
+                        </table>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>No</th>
+                                <th>Tanggal Transaksi</th>
+                                <th>Nominal</th>
+                            </tr>
+                            @foreach ($semuaTrans as $st)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $st->created_at }}</td>
+                                    <td>{{ $st->tabungan }}</td>
+                                </tr>
+                            @endforeach
+                        </table>
                 </div>
             </div>
         </div>

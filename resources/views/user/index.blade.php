@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
-                
+
                 <div class="card-body">
                     @if (Auth::user()->peran == 'admin')
                         <a href="{{ route('home') }}" class="btn btn-warning">kembali</a>
@@ -47,6 +47,11 @@
                     </br></br>
                     @else
                         <h1> Anda tidak memiliki akses ke halaman ini</h1>
+                    @endif
+                    @if ($u->peran== 'nasabah')
+                        <a href="" class="btn btn-success">Cetak</a>
+                    @endif
+
                     @endif
                 </div>
             </div>

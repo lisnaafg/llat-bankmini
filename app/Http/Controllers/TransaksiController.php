@@ -53,5 +53,8 @@ class TransaksiController extends Controller
         return redirect()->route('transaksi.index');
     }
 
-
+    public function laporanTransaksiAdmin(){
+        $semuaTransaksi = Transaksi::all();
+        return view('admin.laporan')->with('semuaTrans', $semuaTrans);
+    }
 }
