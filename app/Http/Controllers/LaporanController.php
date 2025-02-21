@@ -11,21 +11,20 @@ class LaporanController extends Controller
 {
    public function halamanNasabah()
    {
-    $semuaTrans = Transaksi::where('user_id', auth()->user()->id)->get();
-    return view('nasabah.index')->with('semuaTrans', $semuaTrans);
+        $semuaTrans = Transaksi::where('user_id', auth()->user()->id)->get();
+        return view('nasabah.index')->with('semuaTrans', $semuaTrans);
    }
 
    public function laporanNasabah()
    {
-    $semuaTrans=Transaksi::where('user_id', auth()->user()->id)->get();
-    return view('nasabah.laporan')->with('semuaTrans', $semuaTrans);
+        $semuaTrans=Transaksi::where('user_id', auth()->user()->id)->get();
+        return view('nasabah.laporan')->with('semuaTrans', $semuaTrans);
    }
 
    public function cetakLaporan()
    {
-    $semuaTrans = Transaksi::where('user_id', auth()->user()->id)->get();
-    $pdf = pdf::where('nasabah.laporan', ['semuaTrans', => $semuaTrans]);
-    return $pdf->download('Laporan Nasabah.pdf');
-
+        $semuaTrans = Transaksi::where('user_id', auth()->user()->id)->get();
+        $pdf = pdf::where('nasabah.laporan', ['semuaTrans', => $semuaTrans]);
+        return $pdf->download('Laporan Nasabah.pdf');
    }
 }

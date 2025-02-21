@@ -22,12 +22,12 @@
     <h1> Detail Nasabah </h1>
     <table>
         <tr>
-            <th>Nik</th>
-            <td>{{Auth::user()->nik}}</td>
+            <th>Nama</th>
+            <td>{{Auth::user()->nama}}</td>
         </tr>
         <tr>
-            <th>Nama</th>
-            <td>{{Auth::user()->name}}</td>
+            <th>Nik</th>
+            <td>{{Auth::user()->nik}}</td>
         </tr>
         <tr>
             <th>Email</th>
