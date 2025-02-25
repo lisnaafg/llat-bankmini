@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaksi;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class LaporanController extends Controller
 {
+
    public function halamanNasabah()
    {
         $semuaTrans = Transaksi::where('user_id', auth()->user()->id)->get();
@@ -22,9 +24,13 @@ class LaporanController extends Controller
    }
 
    public function cetakLaporan()
-   {
+    {
         $semuaTrans = Transaksi::where('user_id', auth()->user()->id)->get();
-        $pdf = pdf::where('nasabah.laporan', ['semuaTrans', => $semuaTrans]);
+
+        // Membuat PDF dari view dan mengirim data 'semuaTrans' ke view
+        $pdf = Pdf::loadView('nasabah.laporan', compact('semuaTrans'));
+
+        // Men-download PDF dengan nama 'Laporan Nasabah.pdf'
         return $pdf->download('Laporan Nasabah.pdf');
-   }
+    }
 }

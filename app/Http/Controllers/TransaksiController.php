@@ -54,7 +54,8 @@ class TransaksiController extends Controller
     }
 
     public function laporanTransaksiAdmin(){
-        $semuaTransaksi = Transaksi::all();
-        return view('admin.laporan')->with('semuaTrans', $semuaTrans);
+        $semuaTransaksi = Transaksi::all(); // Variabel ini sudah dideklarasikan
+        return view('admin.laporan')->with('semuaTransaksi', $semuaTransaksi); // Pastikan nama variabel konsisten
     }
+
 }
