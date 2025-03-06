@@ -29,12 +29,11 @@
                     <tr>
                         <th>{{$loop->iteration}}</th>
                         <th>{{$st->created_at}}</th>
-                        <th>{{$st->user_id}}</th>
+                        <th>{{$st->nasabah->name}}</th> <!-- Menampilkan nama nasabah -->
                         <th>{{$st->tabungan}}</th>
                         <td>
                             <a href="{{ route('transaksi.delete', $st->id) }}" class="btn btn-danger">Hapus</a>
                             <a href="{{ route('transaksi.edit', $st->id) }}" class="btn btn-warning">Edit</a>
-                        </td>
                         </td>
                     </tr>
                     @endforeach

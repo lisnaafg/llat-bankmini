@@ -49,9 +49,7 @@
                         <h1> Anda tidak memiliki akses ke halaman ini</h1>
                     @endif
                     @if ($u->peran== 'nasabah')
-                        <a href="" class="btn btn-success">Cetak</a>
-                    @endif
-
+                        <a href="{{ route('admin.laporan.cetak.pilih', $u->id) }}" class="btn btn-success">Cetak</a>
                     @endif
                 </div>
             </div>

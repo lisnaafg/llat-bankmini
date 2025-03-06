@@ -11,7 +11,8 @@
                 <div class="card-body">
                     @if (Auth::user()->peran == 'nasabah')
                         <a href="{{ route('home') }}" class="btn btn-warning">kembali</a>
-                        <a href="{{ route('admin.laporan.cetak.pilih', $u->id) }}" class="btn btn-primary">Cetak Laporan Nasabah</a>
+                        <a href ="{{ route('nasabah.cetak') }}" class="btn btn-primary" target="_blank">Cetak Laporan Nasabah</a>
+
                         <br>
                         <br>
                     @endif
@@ -40,7 +41,7 @@
                                 <th>Tanggal Transaksi</th>
                                 <th>Nominal</th>
                             </tr>
-                            @foreach ($semuaTrans as $st)
+                            @foreach ($semuaTransaksi as $st)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $st->created_at }}</td>

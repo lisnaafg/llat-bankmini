@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\LaporanController;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -33,10 +34,11 @@ Route::get('/transaksi/{id}/edit', [TransaksiController::class,'editTrans'])->na
 
 // Nasabah
 Route::get('/nasabah', [LaporanController::class, 'halamanNasabah'])->name('nasabah.index');
-// Route::get('/nasabah/laporan', [LaporanController::class,'laporanNasabah'])->name('nasabah.laporan');
-// Route::get('/nasabah/laporan/cetak', [LaporanController::class,'cetakLaporan'])->name('nasabah.cetak');
-// Route::get('/admin/laporan', [LaporanController::class,'laporanTransaksiAdmin'])->name('admin.laporan');
-// Route::get('/admin/laporan/cetak', [LaporanController::class,'cetakLaporanAdmin'])->name('admin.cetak');
+Route::get('/nasabah/laporan', [LaporanController::class,'laporanNasabah'])->name('nasabah.laporan');
+Route::get('/nasabah/laporan/cetak', [LaporanController::class,'cetakLaporan'])->name('nasabah.cetak');
+Route::get('/admin/laporan', [LaporanController::class,'laporanTransaksiAdmin'])->name('admin.laporan');
+Route::get('/admin/laporan/cetak', [LaporanController::class,'cetakLaporanAdmin'])->name('admin.cetak');
 
 
-// Route::get('/admin/laporan/{id}/cetak', [LaporanController::class,'cetakLaporanPilih'])->name('admin.laporan.cetak.pilih');
+Route::get('/admin/laporan/cetak/{id}', [LaporanController::class, 'cetakLaporanPilih'])->name('admin.laporan.cetak.pilih');
+

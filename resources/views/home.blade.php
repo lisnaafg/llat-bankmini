@@ -12,8 +12,8 @@
                     @if (Auth::user()->peran == 'admin')
                         <h1>Selamat Datang Admin</h1>
                         <a href="{{ route('users.index') }}" class="btn btn-primary">User/Nasabah</a>
+                        <a href="{{route('admin.laporan')}}" class="btn btn-primary" target="_blank">laporan</a>
 
-                        <a href="" class="btn btn-primary">laporan</a>
                     @elseif (Auth::user()->peran == 'teller')
                         <h1>Selamat Datang Teller</h1>
                         <a href="{{ route('transaksi.index')}}" class="btn btn-primary">Transaksi</a>
