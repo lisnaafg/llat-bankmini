@@ -16,7 +16,7 @@
                         <br>
                         <br>
                     @endif
-                        <h1> Detail Nasabah </h1>
+                        
                         <table>
                             <tr>
                                 <th>Nik</th>

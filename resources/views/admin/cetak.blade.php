@@ -18,25 +18,33 @@
     </style>
 </head>
 <body>
-    <h1> Detail Nasabah </h1>
+    @if($nasabah)  <!-- Ensure $nasabah exists -->
     <table>
-        <tr>
-            <th>Nama</th>
-            <td>{{Auth::user()->nama}}</td>
-        </tr>
-        <tr>
-            <th>Nik</th>
-            <td>{{Auth::user()->nik}}</td>
-        </tr>
-        <tr>
-            <th>Email</th>
-            <td>{{Auth::user()->email}}</td>
-        </tr>
-        <tr>
-            <th>Saldo</th>
-            <td>{{Auth::user()->transaksi->sum('tabungan') }}</td>
-        </tr>
+            <tr>
+                <th>Nama</th>
+                <td>{{ $nasabah->name }}</td>
+            </tr>
+            <tr>
+                <th>Nik</th>
+                <td>{{ $nasabah->nik }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ $nasabah->email }}</td>
+            </tr>
+            <tr>
+                <th>Saldo</th>
+                <td>
+                    @if($nasabah->transaksi->count() > 0)
+                        {{ $nasabah->transaksi->sum('tabungan') }}
+                    @else
+                        0
+                    @endif
+                </td>
+            </tr>
     </table>
+
+    <h1> Detail Transaksi Nasabah </h1>
     <table class="table table-bordered">
         <tr>
             <th>No</th>
@@ -51,6 +59,8 @@
             </tr>
         @endforeach
     </table>
-
+    @else
+        <p>Nasabah not found</p>
+    @endif
 </body>
 </html>

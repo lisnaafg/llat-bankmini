@@ -37,8 +37,12 @@ Route::get('/nasabah', [LaporanController::class, 'halamanNasabah'])->name('nasa
 Route::get('/nasabah/laporan', [LaporanController::class,'laporanNasabah'])->name('nasabah.laporan');
 Route::get('/nasabah/laporan/cetak', [LaporanController::class,'cetakLaporan'])->name('nasabah.cetak');
 Route::get('/admin/laporan', [LaporanController::class,'laporanTransaksiAdmin'])->name('admin.laporan');
+// Update transaksi
+Route::put('/transaksi/{id}/update', [TransaksiController::class, 'updateTrans'])->name('transaksi.update');
 Route::get('/admin/laporan/cetak', [LaporanController::class,'cetakLaporanAdmin'])->name('admin.cetak');
 
 
 Route::get('/admin/laporan/cetak/{id}', [LaporanController::class, 'cetakLaporanPilih'])->name('admin.laporan.cetak.pilih');
+// Example for showing a specific nasabah's details (by ID)
+Route::get('/nasabah/{id}', [NasabahController::class, 'detailNasabah'])->name('nasabah.detail');
 
