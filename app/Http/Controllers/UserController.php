@@ -57,11 +57,17 @@ class UserController extends Controller
     }
 
     public function hapusUser($id)
-    {
-        $hapus = User::find($id);
-        $hapus->delete();
-        return redirect()->route('users.index');
+{
+    $hapus = User::find($id);
+
+    if (!$hapus) {
+        return redirect()->route('user.index')->with('error', 'User tidak ditemukan');
     }
+
+    $hapus->delete();
+    return redirect()->route('user.index')->with('success', 'User berhasil dihapus');
+}
+
 
     public function editUser($id)
     {
@@ -96,7 +102,7 @@ class UserController extends Controller
     ]);
 
     // Redirect ke halaman tertentu setelah berhasil
-    return redirect()->route('users.index')->with('success', 'User updated successfully');
+    return redirect()->route('user.index')->with('success', 'User updated successfully');
 
 
         $simpan = User::find($id);

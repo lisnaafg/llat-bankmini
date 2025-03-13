@@ -46,12 +46,26 @@ class LaporanController extends Controller
         $pdf = Pdf::loadView('admin.laporan', compact('semuaTransaksi')); // Perbaikan pada 'nasabah' ke 'semuaTransaksi'
         return $pdf->stream('Laporan Transaksi.pdf');
     }
-    
+
     // Cetak Laporan Pilih (untuk Admin)
-    public function cetakLaporanPilih()
-    {
-        $semuaTransaksi = Transaksi::all();
-        $pdf = Pdf::loadView('admin.laporan', ['semuaTransaksi' => $semuaTransaksi]);
-        return $pdf->stream('Laporan Transaksi.pdf');
+    // Cetak Laporan Pilih (untuk Admin)
+public function cetakLaporanPilih($id)
+{
+    // Ambil data nasabah berdasarkan ID
+    $nasabah = User::with('transaksi')->where('id', $id)->where('peran', 'nasabah')->first();
+
+    // Cek apakah nasabah ditemukan
+    if (!$nasabah) {
+        return redirect()->back()->with('error', 'Nasabah tidak ditemukan');
     }
+
+    // Ambil transaksi hanya untuk nasabah ini
+    $semuaTransaksi = $nasabah->transaksi;
+
+    // Generate PDF
+    $pdf = Pdf::loadView('admin.laporan', compact('nasabah', 'semuaTransaksi'));
+
+    return $pdf->stream('Laporan_' . $nasabah->name . '.pdf');
+}
+
 }

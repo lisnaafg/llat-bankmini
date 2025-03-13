@@ -13,35 +13,78 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #8b5e22;
+            text-transform: uppercase;
+        }
+
+        .navbar .nav-links a {
+            color: #8b5e22;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #b95b1d;
         }
 
         /* Hero Section */
         .hero-section {
-            background: url('https://source.unsplash.com/1600x900/?bank,finance') no-repeat center center/cover;
+            position: relative;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            color: #b95b1d;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(135deg, #f5e1c0, #a67b5b);
+            overflow: hidden;
+            padding: 0 20px;
         }
 
         .hero-content {
             max-width: 600px;
-            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
         .hero-content h1 {
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: bold;
             margin-bottom: 20px;
-            color: #ff66b2; /* Pink Color */
+            color: #583b15;
+            animation: slideDown 1.5s ease-in-out;
         }
 
         .hero-content p {
             font-size: 1.2rem;
             margin-bottom: 30px;
-            color: #ffffff;
+            color: #fad09f;
+            animation: fadeIn 2s ease-in-out;
         }
 
         .hero-buttons .btn {
@@ -50,39 +93,97 @@
             font-size: 1.1rem;
             border-radius: 30px;
             transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         /* Buttons Styling */
         .hero-buttons .btn-login {
-            background-color: #ff66b2; /* Pink Color */
-            border-color: #ff66b2;
+            background-color: #8B4513;
+            border-color: #b36630;
         }
 
         .hero-buttons .btn-login:hover {
-            background-color: #e50091;
-            border-color: #e50091;
+            background-color: #5a2e0e;
+            border-color: #5a2e0e;
+            transform: scale(1.05);
         }
 
-        .hero-buttons .btn-signup {
-            background-color: transparent;
-            border: 2px solid #ff66b2;
-            color: #ff66b2;
-        }
 
-        .hero-buttons .btn-signup:hover {
-            background-color: #ff66b2;
-            color: white;
+    /* Ilustrasi Bank Mini (Sisi Kanan) */
+.hero-image {
+    position: absolute;
+    right: 5%; /* Geser ke kanan */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 300px; /* Ukuran gambar */
+    opacity: 0.9;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Responsiveness untuk Mobile */
+@media (max-width: 768px) {
+    .hero-image {
+        width: 150px; /* Perkecil ukuran di layar kecil */
+        right: 2%;
+    }
+}
+
+
+        /* Wave Effect */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: auto;
         }
 
         /* Footer */
         footer {
-            background-color: #343a40;
+            background-color: #c0a08b;
+            text-align: center;
+            padding: 15px;
+            color: #e0c3a0;
         }
 
-        footer p {
-            font-size: 0.9rem;
-            color: #adb5bd;
+         /* Keyframe Animations */
+         @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
@@ -92,6 +193,11 @@
 
             .hero-content p {
                 font-size: 1rem;
+            }
+
+            .hero-image {
+                width: 150px;
+                right: 5%;
             }
         }
     </style>
@@ -105,17 +211,19 @@
                 <h1>Welcome to Bank Mini</h1>
                 <p>Your easy and reliable banking solution.</p>
                 <div class="hero-buttons">
-                    <a href="/login" class="btn btn-login btn-lg">Login</a>
-
+                    <a href="/login" class="btn btn-login">Login</a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="text-center py-4 bg-dark text-light">
-        <p>&copy; 2025 Bank Mini. All rights reserved.</p>
-    </footer>
+        <!-- Illustration -->
+        <img src="https://cdn-icons-png.flaticon.com/512/2331/2331943.png" class="hero-image" alt="Bank Illustration">
+
+        <!-- Wave Effect -->
+        <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="#8B4513" fill-opacity="1" d="M0,160 C360,280 720,280 1080,200 C1300,140 1440,160 1440,160 L1440,320 L0,320 Z"></path>
+        </svg>
+    </section>
 
 </body>
 </html>

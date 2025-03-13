@@ -37,7 +37,7 @@
                                             <a href="{{ route('users.edit', $u->id) }}" class="btn btn-warning mr-2">Edit</a>
                                             <a href="{{ route('users.delete', $u->id) }}" class="btn btn-danger mr-2" onclick="return confirm('Apakah Anda yakin ingin menghapus pengguna ini?')">Hapus</a>
                                             @if ($u->peran == 'nasabah')
-                                                <a href="{{ route('admin.laporan.cetak.pilih', $u->id) }}" class="btn btn-success">Cetak</a>
+                                                <a href="{{ route('admin.laporan.cetak.pilih', $u->id) }}" class="btn btn-success" target="_blank">Cetak</a>
                                             @endif
                                         </td>
                                     </tr>

@@ -111,7 +111,7 @@
 
     /* Button Styling */
     .btn {
-        
+
         color: white;
         border-radius: 30px;
         padding: 10px 30px;
