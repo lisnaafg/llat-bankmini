@@ -13,6 +13,7 @@
                         <h1>Selamat Datang Admin</h1>
                         <a href="{{ route('users.index') }}" class="btn btn-primary">User/Nasabah</a>
                         <a href="{{route('admin.laporan')}}" class="btn btn-primary" target="_blank">laporan</a>
+                        <a href="{{ route('tambah.bunga') }}" class="btn btn-success">Tambah Jasa/Bunga</a>
 
                     @elseif (Auth::user()->peran == 'teller')
                         <h1>Selamat Datang Teller</h1>

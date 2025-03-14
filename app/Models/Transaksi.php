@@ -19,5 +19,10 @@ public function user()
     return $this->belongsTo(User::class);  // Pastikan ada relasi dengan User menggunakan foreign key 'user_id'
 }
 
+public function bungaHistories()
+    {
+        return $this->hasMany(BungaHistory::class);
+    }
+
 
 }

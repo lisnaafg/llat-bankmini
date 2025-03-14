@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\BungaController;
 
 
 Route::get('/', function () {
@@ -43,6 +44,11 @@ Route::get('/admin/laporan/cetak', [LaporanController::class,'cetakLaporanAdmin'
 
 
 Route::get('/admin/laporan/cetak/{id}', [LaporanController::class, 'cetakLaporanPilih'])->name('admin.laporan.cetak.pilih');
-// Example for showing a specific nasabah's details (by ID)
-Route::get('/nasabah/{id}', [NasabahController::class, 'detailNasabah'])->name('nasabah.detail');
 
+// Route::get('/nasabah/{id}', [NasabahController::class, 'detailNasabah'])->name('nasabah.detail');
+
+// BUNGA OLEH ADMIN
+Route::get('/tambah-bunga', [BungaController::class, 'formBunga'])->name('tambah.bunga');
+Route::post('/simpan-bunga', [BungaController::class, 'simpanBunga'])->name('simpan.bunga');
+Route::get('/data-bunga', [BungaController::class, 'dataBunga'])->name('data_bunga');
+Route::get('/lihat-bunga/{id}', [BungaController::class, 'lihatBunga'])->name('lihat.bunga');
