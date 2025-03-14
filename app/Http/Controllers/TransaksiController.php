@@ -15,7 +15,7 @@ class TransaksiController extends Controller
         $semuaTransaksi);
     }
 
-    
+
 
     public function tambahTrans(){
         return view('transaksi.create');
@@ -24,7 +24,7 @@ class TransaksiController extends Controller
     public function cariNasabah(Request $request){
         // Cari data nasabah berdasarkan NIK
         $nasabah = User::where('nik', $request->nik)->where('peran', 'nasabah')->first();
-    
+
         // Pastikan data nasabah sudah ditemukan sebelum mengirimnya ke view
         if ($nasabah) {
             return view('transaksi.create')->with('nasabah', $nasabah);
@@ -32,7 +32,7 @@ class TransaksiController extends Controller
             return back()->with('error', 'Nasabah tidak ditemukan');
         }
     }
-    
+
     public function simpanTrans(Request $request)
     {
         $transaksi = new Transaksi();
@@ -52,7 +52,7 @@ class TransaksiController extends Controller
     public function editTrans($id){
         $transaksi = Transaksi::findOrFail($id);  // Ambil transaksi berdasarkan ID
         $nasabah = $transaksi->user;  // Ambil data nasabah yang terkait dengan transaksi
-    
+
         return view('transaksi.edit', compact('transaksi', 'nasabah'));  // Kirim variabel ke view
     }
 
