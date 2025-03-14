@@ -1,27 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-header text-center text-white fw-bold">
+                    <i class="bi bi-person-circle"></i> Dashboard
+                </div>
 
-
-                <div class="card-body">
+                <div class="card-body text-center">
                     @if (Auth::user()->peran == 'admin')
-                        <h1>Selamat Datang Admin</h1>
-                        <a href="{{ route('users.index') }}" class="btn btn-primary">User/Nasabah</a>
-                        <a href="{{route('admin.laporan')}}" class="btn btn-primary" target="_blank">laporan</a>
-                        <a href="{{ route('tambah.bunga') }}" class="btn btn-success">Tambah Jasa/Bunga</a>
+                        <h1 class="welcome-text">Selamat Datang, Admin</h1>
+                        <a href="{{ route('users.index') }}" class="btn btn-brown"><i class="bi bi-people"></i> User/Nasabah</a>
+                        <a href="{{ route('admin.laporan') }}" class="btn btn-brown" target="_blank"><i class="bi bi-file-earmark-text"></i> Laporan</a>
+                        <a href="{{ route('tambah.bunga') }}" class="btn btn-brown"><i class="bi bi-people"></i> Tambah Jasa/Bunga</a>
 
                     @elseif (Auth::user()->peran == 'teller')
-                        <h1>Selamat Datang Teller</h1>
-                        <a href="{{ route('transaksi.index')}}" class="btn btn-primary">Transaksi</a>
+                        <h1 class="welcome-text">Selamat Datang, Teller</h1>
+                        <a href="{{ route('transaksi.index') }}" class="btn btn-brown"><i class="bi bi-cash-coin"></i> Transaksi</a>
 
                     @elseif (Auth::user()->peran == 'nasabah')
-                    <a href="{{ route('nasabah.index')}}" class="btn btn-primary">Nasabah</a>
-                        <h1>Selamat Datang Nasabah</h1>
+                        <h1 class="welcome-text">Selamat Datang, Nasabah</h1>
+                        <a href="{{ route('nasabah.index') }}" class="btn btn-brown"><i class="bi bi-wallet"></i> Nasabah</a>
                     @endif
                 </div>
             </div>
@@ -30,56 +31,53 @@
 </div>
 
 <style>
-    /* General Reset */
-    * {
-        margin: 0;
-        padding: 0;
-        background: #fff8e8;
-        box-sizing: border-box;
+    /* Warna Dasar */
+    body {
+        background-color: #F5EFE6;
+        color: #5C4033;
+        font-family: 'Arial', sans-serif;
     }
 
-    /* Card and Form Styling */
+    /* Card Styling */
     .card {
-        border: none;
-        border-radius: 10px;
-        background-color: #f8f1e1; /* Pastel beige background */
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: #E8D8C4;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
-
     .card-header {
-        background-color: #a57c58; /* Light brown for header */
+        background-color: #8B5E3C;
         color: white;
-        font-weight: bold;
+        font-size: 1.3rem;
+        border-radius: 15px 15px 0 0;
+        padding: 15px;
     }
-
     .card-body {
         padding: 2rem;
     }
 
-    /* Button Styling */
-    .btn {
-        background-color: #a57c58; /* Pastel brown */
+    /* Tombol */
+    .btn-brown {
+        background-color: #8B5E3C;
         color: white;
         border-radius: 30px;
-        padding: 10px 30px;
+        padding: 10px 25px;
         font-size: 1.1rem;
         border: none;
-        transition: all 0.3s ease;
+        transition: all 0.3s ease-in-out;
     }
-
-    .btn:hover {
-        background-color: #8f5c3b; /* Darker brown on hover */
-        border-color: #8f5c3b;
+    .btn-brown:hover {
+        background-color: #5C4033;
     }
 
     /* H1 Styling */
-    h1 {
-        color: #333;
-        font-size: 2rem;
-        margin-bottom: 1rem;
+    .welcome-text {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #5C4033;
+        margin-bottom: 20px;
     }
 
-    /* Responsive Adjustments */
+    /* Responsiveness */
     @media (max-width: 768px) {
         .card-body {
             padding: 1.5rem;
@@ -89,7 +87,7 @@
             width: 100%;
         }
 
-        h1 {
+        .welcome-text {
             font-size: 1.5rem;
         }
     }

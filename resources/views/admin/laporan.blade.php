@@ -6,14 +6,48 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        table{
+       <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+
+        /* Table Styling */
+        table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
+            background-color: #fff;
         }
-        td,
-        th{
-            border: 1px solid rgb(120, 225, 155);
-            padding: 8px;
+
+        th, td {
+            border: 1px solid #81C784;
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Table Header */
+        th {
+            background: linear-gradient(120deg, #66BB6A, #43A047);
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Alternating Row Color */
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Title */
+        .title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #388E3C;
         }
     </style>
 </head>

@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- SweetAlert -->
     <style>
+        /* Warna dasar */
         body {
             background-color: #F5EFE6;
             color: #5C4033;
@@ -14,10 +15,17 @@
         }
         .container {
             background: #E8D8C4;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
         }
+        h3 {
+            font-weight: bold;
+            color: #8B5E3C;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Tabel */
         .table {
             text-align: center;
             vertical-align: middle;
@@ -25,31 +33,52 @@
         }
         .table-light {
             background-color: #DFC8B5 !important;
-        }
-        .table-secondary td {
             font-weight: bold;
-            background-color: #C8A888 !important;
-            color: white;
         }
-        .btn-light {
-            background-color: #B08968;
-            color: white;
-            border: none;
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #F0E0D6;
         }
-        .btn-light:hover {
+        .table-hover tbody tr:hover {
+            background-color: #E5C9B5 !important;
+            transition: 0.3s ease-in-out;
+        }
+
+        /* Warna Header (th) */
+        thead th {
+            background-color: #8B5E3C !important; /* Coklat tua */
+            color: white !important; /* Teks putih */
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 12px;
+        }
+        thead th:hover {
+            background-color: #5C4033 !important; /* Lebih gelap saat hover */
+            transition: 0.3s ease-in-out;
+        }
+
+        /* Tombol */
+        .btn-brown {
             background-color: #8B5E3C;
+            color: white;
+            border-radius: 8px;
+            padding: 10px 15px;
+        }
+        .btn-brown:hover {
+            background-color: #5C4033;
         }
     </style>
 </head>
 <body>
 
 <div class="container mt-4">
-    <h3 class="text-center">Data Bunga</h3>
+    <h3 class="text-center"><i class="bi bi-cash-coin"></i> Data Bunga</h3>
 
-    <a href="{{ url()->previous() }}" class="btn btn-light mb-3">← Kembali</a>
+    <a href="{{ url()->previous() }}" class="btn btn-brown mb-3 shadow-sm">
+        <i class="bi bi-arrow-left"></i> Kembali
+    </a>
 
-    <table class="table table-bordered">
-        <thead class="table-light">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
             <tr>
                 <th>No</th>
                 <th>Nama Nasabah</th>
@@ -62,7 +91,6 @@
             @foreach ($transaksis as $t)
                 @php
                     $totalBunga = $t->bungaHistories->sum('bunga');
-                    // Jika bungaHistories kosong, hitung bunga berdasarkan tabungan (misalnya 2% per bulan)
                     if ($t->bungaHistories->isEmpty()) {
                         $totalBunga = $t->tabungan * 0.02;
                     }

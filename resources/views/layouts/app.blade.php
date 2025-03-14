@@ -21,6 +21,78 @@ href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap
 <script
 src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.b
 undle.min.js"></script>
+
+ <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #5C4033;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background: linear-gradient(90deg, #8B5E3C, #A57C58);
+            padding: 10px 0;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand {
+            color: white;
+            font-weight: bold;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+        .navbar-brand:hover {
+            color: #EADBC8;
+        }
+        .navbar-toggler {
+            border: none;
+            background-color: white;
+            border-radius: 5px;
+        }
+        .navbar-nav .nav-link {
+            color: white !important;
+            font-weight: 500;
+            transition: all 0.3s ease-in-out;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #F3BC93 !important;
+        }
+        .dropdown-menu {
+            border-radius: 8px;
+            background: #F8EDE3;
+            border: none;
+        }
+        .dropdown-menu a {
+            color: #5C4033;
+            font-weight: 500;
+            transition: all 0.3s ease-in-out;
+        }
+        .dropdown-menu a:hover {
+            background: #EADBC8;
+            border-radius: 5px;
+        }
+
+        /* Button Styling */
+        .btn-logout {
+            background: linear-gradient(145deg, #E66A6A, #C74C4C);
+            color: white;
+            border-radius: 8px;
+            padding: 8px 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-logout:hover {
+            background: linear-gradient(145deg, #C74C4C, #A53A3A);
+            transform: scale(1.05);
+        }
+
+        /* Main Content Styling */
+        main {
+            padding: 30px;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
